@@ -337,9 +337,9 @@ public enum Router {
      Streams represent the raw data of the uploaded file. External applications may only access this information for activities owned by the authenticated athlete.
 
      - parameter id: the activity id
-     - parameter types: single stream type or comma-separated list of types, if the activity does not have that stream it will not be included in the response
+     - parameter params: a [String: String] dictionary of acceptable parameters
      **/
-    case activityStreams(id: Id, types: String)
+    case activityStreams(id: Id, params: Params)
 
     /**
      A segment effort represents an attempt on a segment. This resource returns a subset of the activity streams that correspond to that effort.
@@ -552,8 +552,8 @@ extension Router {
         case .athleteRoutes(let id, let params):
             return ("/athletes/\(id)/routes", params, .get)
 
-        case .activityStreams(let id, let type):
-              return ("/activities/\(id)/streams/\(type)", nil, .get)
+        case .activityStreams(let id, let params):
+            return ("/activities/\(id)/streams", params, .get)
         case .effortStreams(let id, let type):
             return ("/segment_efforts/\(id)/streams/\(type)", nil, .get)
         case .segmentStreams(let id, let type):
