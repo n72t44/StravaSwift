@@ -46,3 +46,38 @@ public struct OAuthToken: Strava {
     }
 
 }
+
+// this is INCOMPLETE (athlete not persisted because of Codable conformance
+extension OAuthToken : Codable {
+    /*  accessToken: String?
+        refreshToken: String?
+        expiresAt : Int?
+        athlete: Athlete?
+     */
+
+    enum CodeKeys: CodingKey
+    {
+        case accessToken
+        case refreshToken
+        case expiresAt
+        case athlete
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        try container.encode(accessToken, forKey: .accessToken)
+        try container.encode(refreshToken, forKey: .refreshToken)
+        try container.encode(expiresAt, forKey: .expiresAt)
+        //try container.encode(athlete, forKey: .athlete)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodeKeys.self)
+        self.accessToken = try container.decode(String.self, forKey: .accessToken)
+        self.refreshToken = try container.decode(String.self, forKey: .refreshToken)
+        self.expiresAt = try container.decode(Int.self, forKey: .expiresAt)
+        //self.athlete = try container.decode(Athlete.self, forKey: .athlete)
+        self.athlete = nil
+    }
+    
+}

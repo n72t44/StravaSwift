@@ -75,3 +75,76 @@ public final class Athlete: Strava {
         shoes = json["shoes"].strava(Shoe.self)
     }
 }
+
+/* work in progress
+extension Athlete : Codable {
+    enum CodeKeys: CodingKey
+    {
+        case id
+        case resourceState
+        case firstname
+        case lastname
+        case profileMedium
+        case profile
+        case city
+        case state
+        case country
+        case sex
+        case friend
+        case follower
+        case premium
+        case createdAt
+        case updatedAt
+        case friendCount
+        case followerCount
+        case mutualFriendCount
+        case datePreference
+        case measurementPreference
+        case email
+        case FTP
+        case weight
+        case clubs
+        case bikes
+        case shoes
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(resourceState?.rawValue ?? 1, forKey: .resourceState)
+        try container.encode(firstname, forKey: .firstname)
+        try container.encode(lastname, forKey: .lastname)
+        try container.encode(profileMedium, forKey: .profileMedium)
+        try container.encode(profile, forKey: .profile)
+        try container.encode(city, forKey: .city)
+        try container.encode(state, forKey: .state)
+        try container.encode(country, forKey: .country)
+        try container.encode(sex?.rawValue ?? "M", forKey: .sex)
+        try container.encode(friend?.rawValue ?? "Pending", forKey: .friend)
+        
+        try container.encode(follower, forKey: .id)
+        try container.encode(premium, forKey: .id)
+        try container.encode(createdAt, forKey: .id)
+        try container.encode(updatedAt, forKey: .id)
+        try container.encode(friendCount, forKey: .id)
+        try container.encode(followerCount, forKey: .id)
+        try container.encode(mutualFriendCount, forKey: .id)
+        try container.encode(datePreference, forKey: .id)
+        try container.encode(measurementPreference, forKey: .id)
+        try container.encode(email, forKey: .id)
+        try container.encode(FTP, forKey: .id)
+        try container.encode(weight, forKey: .id)
+        try container.encode(clubs, forKey: .id)
+        try container.encode(bikes, forKey: .id)
+        try container.encode(shoes, forKey: .id)
+    }
+    
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodeKeys.self)
+        //self.accessToken = try container.decode(String.self, forKey: .accessToken)
+        
+        
+    }
+    
+}
+*/
