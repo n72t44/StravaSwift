@@ -44,6 +44,8 @@ public struct StravaConfig {
 
     public let forcePrompt: Bool
 
+    public let scheme: String // app scheme, as defined in your app Info.plist
+
     /**
      Initializer
 
@@ -59,12 +61,14 @@ public struct StravaConfig {
                 redirectUri: String,
                 scopes: [Scope] = [.read],
                 delegate: TokenDelegate? = nil,
-                forcePrompt: Bool = true) {
+                forcePrompt: Bool = true,
+                scheme: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectUri = redirectUri
         self.scopes = scopes
         self.delegate = delegate ?? DefaultTokenDelegate()
         self.forcePrompt = forcePrompt
+        self.scheme = scheme
     }
 }
